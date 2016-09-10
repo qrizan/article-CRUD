@@ -13,6 +13,6 @@
     "consolidate": "*",
     "express": "*",
     "pg": "*",
-    "pug": "^0.1.0"
+    "pug": "^2.0.0-alpha6"
   }
 }

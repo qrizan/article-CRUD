@@ -8,11 +8,11 @@ var app = express();
 
 var connect = "postgres://rizan:pass123@localhost/article";
 
-// assign the pug engine to .html files
-app.engine('html', cons.pug);
+// assign the pug engine to .pug files
+app.engine('pug', cons.pug);
 
-// set .html as the default extension
-app.set('view engine', 'html');
+// set .pug as the default extension
+app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 
 // set public folder
@@ -24,7 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false}));
 
 // index
 app.get('/', function(req, res){
-	console.log('Test');
+	// console.log('Test');
+	res.render('index');
 });
 
 // server

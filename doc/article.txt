@@ -26,5 +26,17 @@ npm install
 > test server
 $ node app.js
 
+> set up views app
+$ mkdir views
+$ mkdir public
+$ mkdir public/css
+$ mkdir public/js
+$ touch public/css/style.css
+$ touch views/index.pug
+$ touch views/layout.pug
 
+> set layout.pug
+> set index.pug
 
+> test server
+$ node app.js
