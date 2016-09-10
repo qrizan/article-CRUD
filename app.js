@@ -6,7 +6,20 @@ var pug = require('pug');
 var pg = require('pg');
 var app = express();
 
-var connect = "postgres://rizan:pass123@localhost/article";
+var client = new pg.Client();
+
+var config = {
+  user: 'rizan', //env var: PGUSER
+  database: 'article', //env var: PGDATABASE
+  password: 'pass123', //env var: PGPASSWORD
+  host: 'localhost', // Server hosting the postgres database
+  port: 5432, //env var: PGPORT
+  max: 10, // max number of clients in the pool
+  idleTimeoutMillis: 30000, // how long a client is allowed to remain idle before being closed
+};
+
+var pool = new pg.Pool(config);
+
 
 // assign the pug engine to .pug files
 app.engine('pug', cons.pug);
@@ -24,8 +37,22 @@ app.use(bodyParser.urlencoded({ extended: false}));
 
 // index
 app.get('/', function(req, res){
-	// console.log('Test');
-	res.render('index');
+	pool.connect(function(err, client, done) {
+	  if(err) {
+	    return console.error('error fetching client from pool', err);
+	  }
+	  client.query('SELECT * FROM article', function(err, result) {
+	    if(err) {
+	      return console.error('error running query', err);
+	    }
+	    res.render('index',{articles: result.rows})
+	    done();	    
+	  })
+	});
+
+	pool.on('error', function (err, client) {
+	  console.error('idle client error', err.message, err.stack)
+	})
 });
 
 // server
