@@ -20,5 +20,11 @@ App Project
 -------------------------------
 npm init
 edit package.json
-
 npm install
+
+> set up basic app.js
+> test server
+$ node app.js
+
+
+
