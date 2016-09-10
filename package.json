@@ -1,0 +1,18 @@
+{
+  "name": "article",
+  "version": "1.0.0",
+  "description": "Article CRUD ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Taufiq Rizan",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "*",
+    "consolidate": "*",
+    "express": "*",
+    "pg": "*",
+    "pug": "^0.1.0"
+  }
+}

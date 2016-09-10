@@ -1,0 +1,24 @@
+-------------------------------
+Set Up Database
+-------------------------------
+CREATE ROLE rizan WITH LOGIN ENCRYPTED PASSWORD 'pass123' CREATEDB CREATEROLE REPLICATION SUPERUSER;
+
+CREATE DATABASE article WITH OWNER rizan ENCODING 'UTF8';
+
+sudo -u rizan psql article
+
+
+-------------------------------
+Create table article
+-------------------------------
+CREATE SEQUENCE article_seq;
+CREATE TABLE IF NOT EXISTS "article"("id" integer PRIMARY KEY default nextval('article_seq'),"title" varchar(30) DEFAULT NULL,"body" text DEFAULT NULL);
+alter sequence article_seq owned by article.id;
+
+-------------------------------
+App Project
+-------------------------------
+npm init
+edit package.json
+
+npm install
