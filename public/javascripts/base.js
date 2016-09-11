@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	$('.delete-article').on('click', function(){
 		var id = $(this).data('id');
-		var url = '/delete/'+id;
+		var image = $(this).data('image');
+		var url = '/delete/'+id+'/'+image;
 
 		if (confirm('Delete article ?')){
 			$.ajax({
@@ -21,6 +22,7 @@ $(document).ready(function(){
 	$('.edit-article').on('click', function(){
 		$('#edit-title').val($(this).data('title'));
 		$('#edit-body').val($(this).data('body'));		
-		$('#edit-id').val($(this).data('id'));				
+		$('#edit-oldimage').val($(this).data('image'));				
+		$('#edit-id').val($(this).data('id'));			
 	});
 });
