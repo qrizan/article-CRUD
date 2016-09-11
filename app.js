@@ -55,6 +55,38 @@ app.get('/', function(req, res){
 	})
 });
 
+// add
+app.post('/add', function(req, res){
+	pool.connect(function(err, client, done) {
+	  if(err) {
+	    return console.error('error fetching client from pool', err);
+	  }
+	  client.query('INSERT INTO article(title,body) VALUES ($1, $2)',[req.body.title,req.body.body]);
+	  done();
+	  res.redirect('/');
+	});
+
+	pool.on('error', function (err, client) {
+	  console.error('idle client error', err.message, err.stack)
+	})
+});
+
+// delete
+app.delete('/delete/:id', function(req, res){
+	pool.connect(function(err, client, done) {
+	  if(err) {
+	    return console.error('error fetching client from pool', err);
+	  }
+	  client.query('DELETE FROM article WHERE id = $1',[req.params.id]);
+	  done();
+	  res.send(200);
+	});
+
+	pool.on('error', function (err, client) {
+	  console.error('idle client error', err.message, err.stack)
+	})
+});
+
 // server
 app.listen(3000, function(){
 	console.log('Server started on port 3000');
