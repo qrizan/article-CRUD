@@ -17,4 +17,10 @@ $(document).ready(function(){
 			});
 		}
 	});
+
+	$('.edit-article').on('click', function(){
+		$('#edit-title').val($(this).data('title'));
+		$('#edit-body').val($(this).data('body'));		
+		$('#edit-id').val($(this).data('id'));				
+	});
 });

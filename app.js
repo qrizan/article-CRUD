@@ -46,6 +46,7 @@ app.get('/', function(req, res){
 	      return console.error('error running query', err);
 	    }
 	    res.render('index',{articles: result.rows})
+	    console.log(result.rows);
 	    done();	    
 	  })
 	});
@@ -80,6 +81,22 @@ app.delete('/delete/:id', function(req, res){
 	  client.query('DELETE FROM article WHERE id = $1',[req.params.id]);
 	  done();
 	  res.send(200);
+	});
+
+	pool.on('error', function (err, client) {
+	  console.error('idle client error', err.message, err.stack)
+	})
+});
+
+// edit
+app.post('/edit', function(req, res){
+	pool.connect(function(err, client, done) {
+	  if(err) {
+	    return console.error('error fetching client from pool', err);
+	  }
+	  client.query('UPDATE article SET title = $1, body = $2 WHERE id = $3',[req.body.title,req.body.body,req.body.id]);
+	  done();
+	  res.redirect('/');
 	});
 
 	pool.on('error', function (err, client) {
