@@ -10,8 +10,8 @@ http://localhost:3000/
 ```
 
 ### Add Form
-![ScreenShot](https://raw.githubusercontent.com/qrizan/article/master/screenshot/addform.png)
+![ScreenShot](https://raw.githubusercontent.com/qrizan/article-CRUD/master/screenshot/addform.png)
 
 
 ### Post Page
-![ScreenShot](https://raw.githubusercontent.com/qrizan/article/master/screenshot/post-page.png)
+![ScreenShot](https://raw.githubusercontent.com/qrizan/article-CRUD/master/screenshot/post-page.png)
